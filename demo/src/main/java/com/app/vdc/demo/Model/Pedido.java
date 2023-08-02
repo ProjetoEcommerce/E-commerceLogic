@@ -11,7 +11,14 @@ public class Pedido {
    private Long id;
    private LocalTime dataCriacao;
 
+   @ManyToOne(cascade = CascadeType.ALL)
+   private User cliente;
+   @OneToOne(cascade = CascadeType.ALL)
    private Carrinho car;
+
+   public Pedido(Long id) {
+      this.id = id;
+   }
 
    public Long getId() {
       return id;
@@ -54,8 +61,6 @@ public class Pedido {
    }
 
    private boolean is_finished;
-   @ManyToOne(fetch = FetchType.EAGER)
-   private User cliente;
-   
+
    
 }

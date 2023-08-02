@@ -2,10 +2,9 @@ package com.app.vdc.demo.Model;
 
 
 import javax.persistence.*;
-import java.util.ArrayList;
 
 
-
+@Entity
 public class User {
  @Id
  @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,18 +18,20 @@ public class User {
  
  private String password;
 
+ public User() {
+ }
 
- @OneToOne(fetch = FetchType.LAZY)
+ @OneToOne(cascade=CascadeType.ALL)
  private Carrinho carrinho;
  private String CEP;
 
  private int numcasa;
 
  private boolean is_active;
- @OneToOne(fetch = FetchType.LAZY)
+ @OneToOne(cascade=CascadeType.ALL)
  private Pedido pedido;
 
-private final boolean is_staff=false;
+private final boolean is_staff=true;
 
  public Carrinho getCarrinho() {
   return carrinho;

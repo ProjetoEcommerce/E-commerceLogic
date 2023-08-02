@@ -2,7 +2,7 @@ package com.app.vdc.demo.Model;
 
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -10,20 +10,30 @@ public class Carrinho {
 	@javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
-	@OneToMany(fetch = FetchType.EAGER)
-	private ArrayList<Produto> produtos;
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<Produto> produtos;
+	@OneToOne(mappedBy = "carrinho",cascade=CascadeType.ALL)
     private User consumidor;
+
+	public Carrinho(Long id, List<Produto> produtos, User consumidor) {
+		Id = id;
+		this.produtos = produtos;
+		this.consumidor = consumidor;
+	}
+
+	public Carrinho(Long id) {
+		Id = id;
+	}
 
 	public void setId(Long id) {
 		Id = id;
 	}
 
-	public ArrayList<Produto> getProdutos() {
+	public List<Produto> getProdutos() {
 		return produtos;
 	}
 
-	public void setProdutos(ArrayList<Produto> produtos) {
+	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
 

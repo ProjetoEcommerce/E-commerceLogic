@@ -13,7 +13,11 @@ public class Produto {
   private User Consumidor;
   private float precoUni;
   private Categorias categoria;
-  public int getId() {
+
+    public Produto() {
+    }
+
+    public int getId() {
 	return id;
 }
 public void setId(int id) {
